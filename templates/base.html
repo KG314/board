@@ -6,7 +6,7 @@
     <h2><a href="/">掲示板</a></h2>
 
     {% if user.is_authenticated %}
-        <p>{{user.username}}</p>
+    <span>{{ user.username }} <a href="accounts\logout">ログアウト</a></span><br>
     {% else %}
         <span><a href="accounts\login">ログイン</a> <a href="accounts\signup">新規登録</a></span><br>
     {% endif %}
