@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title%} {{ topic }} {% endblock %}</title>
+
+{% block content %}
+    <h3>{{ topic }}</h3>
+    {% for post in posts %}
+        <div>
+            {{ forloop.counter }}:
+            {% if post.posted_by %}
+                {{ post.posted_by }}
+            {% else %}
+                無名
+            {% endif %}
+            {{ post.posted_at | date:"Y/m/d(D) H:i:s"}}<br>
+        </div>
+        <div style="padding-left:2em; padding-bottom:1em">
+            {{ post.content }}<br>
+            {% if post.image_upload %}
+                <a href="{{ post.image_upload.url }}"><img src="{{ post.image_thumbnail.url }}" alt="削除されました"></a>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <a href="{% url 'new_post' topic.pk %}">書き込む</a><br> 
+{% endblock %}
+</html>
